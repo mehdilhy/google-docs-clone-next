@@ -65,7 +65,7 @@ export default function Home() {
       <Header />
       <section className="bg-[#F1F3F4] pb-10 px-5">      {showModal && modal}
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <div className="py-6 justify-between flex items-center">
             <h2 className="text-gray-900 text-md">Start a new document</h2>
             <Button
@@ -92,7 +92,7 @@ export default function Home() {
           <h3 className="mx-1">Blank</h3>
         </div>
       </section>
-      <section className="bg-white px-10 md:px-0">
+      <section className="bg-white px-10 md:px-0 max-w-3xl mx-auto">
         <div className="max-w-3xl mx-auto py-8 text-sm text-gray-700">
           <div className="flex justify-between items-center pb-5">
             <h2 className="font-medium flex-grow">My documents</h2>
