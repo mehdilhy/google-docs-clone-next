@@ -54,9 +54,8 @@ function Header() {
         </div>
       </div>
       {/* Search bar */}
-      {/* Changing the background color and adding shadow in case of focus */}
-      {focused ? (
-        <div className=" rounded-md  flex flex-grow items-center px-5 py-2 bg-white  placeholder-gray-100 ml-[15%] mr-[10%]  md:mr[20%]  xl:mr[20%]  lg:mr[30%] shadow-md  ">
+   
+        <div className=" rounded-md  flex flex-grow items-center px-5 py-2 bg-gray-200 placeholder-gray-100 ml-[15%] mr-[10%]  md:mr[20%]  xl:mr[20%]  lg:mr[30%] shadow-md  ">
           <div className="flex items-center hover:bg-gray-200 rounded-full w-8 h-8 justify-center cursor-pointer text-gray-600">
             <Icon name="search" size="3xl" className="justify-center" />
           </div>
@@ -66,19 +65,7 @@ function Header() {
             className="px-5 flex-grow outline-none bg-transparent"
           />
         </div>
-      ) : (
-        <div className=" rounded-md  flex flex-grow items-center px-5 py-2 bg-gray-100  placeholder-gray-100 ml-[15%] mr-[8%]  md:mr[20%]  xl:mr[20%]  lg:mr[20%] ">
-          <div className="flex items-center hover:bg-gray-200 rounded-full w-8 h-8 justify-center cursor-pointer text-gray-600">
-            <Icon name="search" size="3xl" className="justify-center" />
-          </div>
-          <Input
-            disableUnderline
-            placeholder="Search"
-            className="px-5 flex-grow outline-none bg-transparent  "
-            onClick={() => setFocused(true)}
-          />
-        </div>
-      )}
+       
       {/* Avatar and left menu */}
       <div className="flex items-center mx-4 space-x-5">
         <Icon name="apps" size="2xl" />
