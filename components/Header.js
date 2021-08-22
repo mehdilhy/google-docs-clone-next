@@ -3,14 +3,33 @@ import Button from "@material-tailwind/react/Button";
 import Icon from "@material-tailwind/react/Icon";
 import Image from "next/image";
 import { Input, Avatar } from "@material-ui/core";
-
+import { signOut, useSession } from "next-auth/client";
+import { makeStyles } from "@material-ui/core/styles";
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
+const useStyles = makeStyles((theme) => ({
+  typography: {
+    padding: theme.spacing(2),
+  },
+}));
 function Header() {
-  const [focused, setFocused] = useState(true);
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+  const [session] = useSession();
+  const [focused, setFocused] = useState(false);
   return (
-    <div
-      className="flex items-center top-0 sticky z-50 justify-between px-1 h-20"
-      onClick={() => setFocused(!focused)}
-    >
+    <div className="flex items-center top-0 sticky z-50 justify-between px-1 h-20">
       <div className=" md:flex sm:flex lg:flex  flex-row items-center">
         <Button
           color="#5F6368"
@@ -64,7 +83,37 @@ function Header() {
       <div className="flex items-center mx-4 space-x-5">
         <Icon name="apps" size="2xl" />
         <div className="hidden md:flex sm:flex lg:flex ">
-          <Avatar src="" className="hidden md:flex sm:flex lg:flex " />
+          <Avatar
+            src={session.user.image}
+            className="hidden md:flex sm:flex lg:flex "
+            onClick={handleClick}
+            aria-describedby={id}
+          />
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+          >
+            <Button
+              color="#5F6368"
+              ripple="light"
+              buttonType="outline"
+              ripple="dark"
+              className=" h-15 w-15 border-0 text-gray-700 mx-2"
+              onClick={signOut}
+            >
+              Sign out.
+            </Button>
+          </Popover>
         </div>
       </div>
     </div>
