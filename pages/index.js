@@ -37,7 +37,7 @@ export default function Home() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           className="outline-none w-full"
-          placeholder="Enter name of document..."
+          placeholder="Enter name of document.."
         />
       </ModalBody>
       <ModalFooter>
