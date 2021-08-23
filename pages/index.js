@@ -18,15 +18,16 @@ export default function Home() {
 
   const [input, setInput] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [snapshot]=useCollectionOnce(db.collection('userDocs').doc(session.user.email).collection("docs").orderBy('timestamp','desc'))
+  const [snapshot]=useCollectionOnce(db.collection('userDocs').doc(session?.user?.email).collection("docs").orderBy('timestamp','desc'))
   const createDocument = () => {
     if (!input) return;
-    db.collection("userDocs").doc(session.user.email).collection("docs").add({
+    if (session!=null){
+    db.collection("userDocs").doc(session?.user?.email).collection("docs").add({
       fileName: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setInput("");
-    setShowModal(false);
+    setShowModal(false);}
   };
   const modal = (
     <Modal size="sm" active={showModal} toggler={() => setShowModal(false)}>
